@@ -8,4 +8,11 @@
 ```
 pip install pytchat
 pip install yt-dlp
+pip install Django
+```
+
+## サーバー起動
+```
+cd yt_highlight_finder
+python manage.py runserver
 ```
