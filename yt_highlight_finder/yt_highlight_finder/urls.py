@@ -25,9 +25,11 @@ from django.urls import path,include
 #hello フォルダのviews.pyをhelloというなまえでimport
 import hello.views as hello
 
+
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
 #    path('hello/', hello.index),
     path('hello/', include('hello.urls')),
-
 ]
+
