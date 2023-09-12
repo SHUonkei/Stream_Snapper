@@ -27,7 +27,22 @@ def next(request):
     }
     return render(request, 'hello/index.html',params)
 
+def form(request):
+    params = {
+        'title':"form"
+        ,'msg':"this is form page"
+        ,'goto':'index',
+    }
+    return render(request, 'hello/forms.html',params)
 
+def forms(request):
+    formtext = request.POST['formtext']
+    params={
+        'title':'Hello/Form',
+        'msg':"よろしくオネシャス" + formtext +"さん",
+        'goto':"next"
+    }
+    return render(request,'hello/forms.html',params)
 
 
 #ビュー関数
