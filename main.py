@@ -1,6 +1,7 @@
 import get_funnytime
 import plot_chatdata
 
-#get_funnytime.get_chatdata("ZLJSLULir5Y")
-print(plot_chatdata.most_funnest_time("ZLJSLULir5Y"))
+#https://www.youtube.com/watch?v=IW2t52ps27s
+get_funnytime.get_chatdata("IW2t52ps27s")
+print(plot_chatdata.most_funnest_time("IW2t52ps27s"))
 

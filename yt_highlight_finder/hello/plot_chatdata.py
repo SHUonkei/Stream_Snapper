@@ -7,7 +7,7 @@ def most_funnest_time(video_id):
 #    video_id="IW2t52ps27s"
     textname=video_id+'.txt'
     # Given data
-    with open("./data/"+textname, 'r', encoding='utf-16') as file:
+    with open(textname, 'r', encoding='utf-16') as file:
         data = file.read()
 
     timestamps = []
