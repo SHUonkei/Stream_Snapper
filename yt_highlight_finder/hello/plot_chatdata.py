@@ -6,9 +6,10 @@ def most_funnest_time(video_id):
     #URLの末尾
 #    video_id="IW2t52ps27s"
     textname=video_id+'.txt'
-    #data
-    with open(textname, 'r', encoding='utf-16') as file:
+    # Given data
+    with open("./data/"+textname, 'r', encoding='utf-16') as file:
         data = file.read()
+
     timestamps = []
     for line in data.strip().split("\n"):
         #Parse
@@ -21,9 +22,7 @@ def most_funnest_time(video_id):
         # datetimeオブジェクトに変換します
         dt = datetime.strptime(datetime_str, "%Y-%m-%d %H:%M:%S")
         timestamps.append(dt)
-    
-    print(timestamps)
-    #time -> msg 
+    # Count messages per minute
     msg_counts = defaultdict(int)
     for timestamp in timestamps:
         # Round down to the nearest minute
@@ -31,14 +30,12 @@ def most_funnest_time(video_id):
         msg_counts[rounded_time] += 1
 
 
+    # Sort by time for plotting
     times_sorted = sorted(msg_counts.keys())
     counts_sorted = [msg_counts[time] for time in times_sorted]
     start = times_sorted[0]
-    print(start)
-    
-    #日付超えるとやばいのか。。。
-    # Calculate minutes since start for each timestamp
 
+    # Calculate minutes since start for each timestamp
     minutes_since_start = [(time - start).seconds / 60 for time in times_sorted]
 
     max_commet_num = 0
@@ -51,17 +48,17 @@ def most_funnest_time(video_id):
     #最も盛り上がったタイミング-1分からスタート
     # #t=◯m◯s
 #    print("https://www.youtube.com/watch?v="+video_id+"#t="+str(int(minutes_since_start[max_commet_index])-1)+"m00s")
-    plt.figure(figsize=(10, 6))
-    plt.plot(minutes_since_start, counts_sorted, marker='o', linestyle='-')
-    plt.title("Number of Messages per Minute")
-    plt.xlabel("Minutes since start")
-    plt.ylabel("Message Count")
-    plt.grid(True)
-
-    plt.tight_layout()
-    plt.show()
-
+    
     return "https://www.youtube.com/watch?v="+video_id+"#t="+str(int(minutes_since_start[max_commet_index])-1)+"m00s"
     
-#    Plot the results with adjusted x-axis
+    # Plot the results with adjusted x-axis
+    # plt.figure(figsize=(10, 6))
+    # plt.plot(minutes_since_start, counts_sorted, marker='o', linestyle='-')
+    # plt.title("Number of Messages per Minute")
+    # plt.xlabel("Minutes since start")
+    # plt.ylabel("Message Count")
+    # plt.grid(True)
+
+    # plt.tight_layout()
+    # plt.show()
 
