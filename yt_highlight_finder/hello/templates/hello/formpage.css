@@ -20,8 +20,8 @@ li{
 }
 
 .Form-Item {
-  margin-top: 20px;
-  margin-left: 20px;
+  display: block; 
+  margin: 20px auto; 
   background: -webkit-linear-gradient(to right, rgb(255, 124, 111), #ffc994);
   background: linear-gradient(to right, rgb(255, 124, 111), #ffc994);
   color: white;
