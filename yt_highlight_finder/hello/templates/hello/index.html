@@ -1,14 +1,20 @@
+{% load static %} 
 <!doctype html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
     <title>hello</title>
 </head>
+<head>
+    <link rel="stylesheet" href="formpage.css" >
+    <meta charset="utf-8">
+    <title>Exciting scene</title>
+  </head>
 <body>
     <h1>hello</h1>
-    <p>this is a sample page </p>
+    <p>this is a yt_highlight_finder </p>
     <h1>{{title}}</h1>
     <p>{{msg}}</p>
-    <a href="{% url goto %}">ページ遷移{{goto}}</a>
+    <a href="{% url goto %}">動画一覧を見る</a>
 </body>
 </html>

@@ -51,15 +51,16 @@ def most_funnest_time(video_id):
     #最も盛り上がったタイミング-1分からスタート
     # #t=◯m◯s
 #    print("https://www.youtube.com/watch?v="+video_id+"#t="+str(int(minutes_since_start[max_commet_index])-1)+"m00s")
-    plt.figure(figsize=(10, 6))
-    plt.plot(minutes_since_start, counts_sorted, marker='o', linestyle='-')
-    plt.title("Number of Messages per Minute")
-    plt.xlabel("Minutes since start")
-    plt.ylabel("Message Count")
-    plt.grid(True)
+    
+    # plt.figure(figsize=(10, 6))
+    # plt.plot(minutes_since_start, counts_sorted, marker='o', linestyle='-')
+    # plt.title("Number of Messages per Minute")
+    # plt.xlabel("Minutes since start")
+    # plt.ylabel("Message Count")
+    # plt.grid(True)
 
-    plt.tight_layout()
-    plt.show()
+    # plt.tight_layout()
+    # plt.show()
 
     return "https://www.youtube.com/watch?v="+video_id+"#t="+str(int(minutes_since_start[max_commet_index])-1)+"m00s"
     
