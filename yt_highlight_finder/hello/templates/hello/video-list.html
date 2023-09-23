@@ -1,0 +1,20 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
+{% block title %}動画一覧{% endblock %}
+
+{% block content %}
+<div>
+    <ul>
+      {% for obj in object_list %}
+      {{ obj.title }}
+
+        <li>
+            <a href="https://www.youtube.com/watch?v={{ obj.url }}" target="_blank">
+                <!-- サムネイルを表示 -->
+            <img src="https://img.youtube.com/vi/{{ obj.video }}/0.jpg" alt="{{ obj.title }}">
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+</div>
+{% endblock %}
