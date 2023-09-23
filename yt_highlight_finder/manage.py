@@ -12,6 +12,7 @@ def handleKill(signum, frame):
     # 必要に応じて終了前の処理を追加
     print(threading.active_count())
     sys.exit(0)
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yt_highlight_finder.settings')

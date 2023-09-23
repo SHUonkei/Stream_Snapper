@@ -2,13 +2,50 @@ from django.shortcuts import render
 
 #HttpResponseというクラスをimport
 #クライアントに送り返す内容を管理するクラス
-from django.http import HttpResponse
 
+from django.http import HttpResponse
 from . import forms
 from django.views.generic import TemplateView
 from . import get_funnytime
 from . import plot_chatdata
-#from asgiref.sync import sync_to_async
+from .models import Hello
+
+
+def index(request):
+    
+    #render でレンダリングしてる
+    #変数とかなんか使う場合はここで置き換えて表示させる
+    #render の返り値は TemplateResponseというクラスのインスタンス
+    
+    params = {
+        'title':"this is title parameter",
+        'msg':"this is a page for testing",
+        'goto':'videoListView',
+    }
+    
+    return render(request, 'hello/index.html',params)
+
+def videoListView(request):
+    template_name = "hello/video-list.html"
+    ctx = {}
+    qs = Hello.objects.all()
+    ctx["object_list"] = qs
+
+    return render(request, template_name, ctx)
+
+
+"""
+これより先は使用していないコード
+今後の機能拡張に使えるかもしれない
+"""
+
+def next(request):
+    params = {
+        'title':"next"
+        ,'msg':"this is next page"
+        ,'goto':'index',
+    }
+    return render(request, 'hello/index.html',params)
 
 class FormView(TemplateView):
     # 初期変数定義
@@ -118,31 +155,6 @@ class FormView(TemplateView):
                 self.params["url_data"] = url_data
 
         return render(request, "hello/formpage.html",context=self.params)
-
-def index(request):
-    #render でレンダリングしてる
-    #変数とかなんか使う場合はここで置き換えて表示させる
-    #render の返り値は TemplateResponseというクラスのインスタンス
-    #
-    
-    params = {
-        'title':"this is title parameter",
-        'msg':"this is a page for testing",
-        'goto':'next',
-    }
-    
-    return render(request, 'hello/index.html',params)
-
-
-def next(request):
-    params = {
-        'title':"next"
-        ,'msg':"this is next page"
-        ,'goto':'index',
-    }
-    return render(request, 'hello/index.html',params)
-
-
 
 
 #ビュー関数
