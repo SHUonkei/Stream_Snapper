@@ -8,24 +8,36 @@
 </head>
 <body>
     <h1 class="page-title">{% block title %}動画一覧{% endblock %}</h1>
-
+      
+    <form method="get" action="./video-list">
+      <div class="search-container">
+          <input type="text" name="q" placeholder="Search...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </form>
+    
     <ul class="video-list">
         {% for obj in object_list %}
         <li>
-            <a href="https://www.youtube.com/watch?v={{ obj.url }}" target="_blank">
+            <a href="{{ obj.url }}" target="_blank">
               <div class="thumbnail">
                   <img src="https://img.youtube.com/vi/{{ obj.video }}/0.jpg" alt="{{ obj.title }}">
                   <div class="overlay">
                     <div class="overlay-content">
                       <p class="video-title">{{ obj.title }}</p>
-                      <a class="button primary-color" href="https://www.youtube.com/watch?v={{ obj.url }}" target="_blank">Watch Now</a>
+                      <a class="button primary-color" href="{{ obj.url }}" target="_blank">Watch Now</a>
                     </div>
                   </div>
               </div>
             </a>
+        <div>
+          <p>ジャンル</p>
+          <p>{{obj.tag}}</p>
+        </div>
         </li>
         {% endfor %}
     </ul>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </body>
 </html>
 
