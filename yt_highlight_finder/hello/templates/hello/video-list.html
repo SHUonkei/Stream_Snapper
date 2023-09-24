@@ -8,7 +8,12 @@
 </head>
 <body>
     <h1 class="page-title">{% block title %}動画一覧{% endblock %}</h1>
-
+      
+    <form method="get" action="./video-list">
+          <input type="text" name="q" placeholder="Search...">
+          <input type="submit" value="Search">
+    </form>
+    
     <ul class="video-list">
         {% for obj in object_list %}
         <li>
@@ -23,6 +28,10 @@
                   </div>
               </div>
             </a>
+        <div>
+          <p>ジャンル</p>
+          <p>{{obj.tag}}</p>
+        </div>
         </li>
         {% endfor %}
     </ul>
