@@ -28,10 +28,18 @@ def index(request):
 def videoListView(request):
     template_name = "hello/video-list.html"
     ctx = {}
-    qs = Hello.objects.all()
+    
+    query = request.GET.get('q', '')  # 'q' は検索ボックスの名前です
+    print("this is query")
+    print(query)
+    if query:
+        qs = Hello.objects.filter(title__icontains=query)
+    else:
+        qs = Hello.objects.all()
+    print(qs)
     ctx["object_list"] = qs
-
     return render(request, template_name, ctx)
+
 
 
 """
