@@ -9,6 +9,7 @@ from django.views.generic import TemplateView
 from . import get_funnytime
 from . import plot_chatdata
 from .models import Hello
+from youtubesearchpython import *
 
 
 def index(request):
@@ -21,6 +22,7 @@ def index(request):
         'title':"this is title parameter",
         'msg':"this is a page for testing",
         'goto':'videoListView',
+        'gotoform':'formpage'
     }
     
     return render(request, 'hello/index.html',params)
@@ -59,9 +61,41 @@ class FormView(TemplateView):
             if self.params["form"].is_valid():
                 self.params["Message"] = "リクエストを受け付けました！ありがとうございます！"
                 #urlが無効なとき（youtubeとかじゃないときの例外処理必要
-                
-                
-        self.params["goto"] = 'videoListView',
+                import gspread
+                from oauth2client.service_account import ServiceAccountCredentials
+                SERVICE_ACCOUNT_FILE = 'hello/config.json'
+                #jsonファイルを使って認証情報を取得
+                scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+                cretentials = ServiceAccountCredentials.from_json_keyfile_name(SERVICE_ACCOUNT_FILE, scope)
+
+                #認証情報を使ってスプレッドシートの操作権を取得
+                gs = gspread.authorize(cretentials)
+
+                #共有したスプレッドシートのキー（後述）を使ってシートの情報を取得
+                SPREADSHEET_KEY = '1QJzxviVL3Hln1yvIpjm0bRsmAU4O-GitAjOd9DZtGQM'
+                ws = gs.open_by_key(SPREADSHEET_KEY).worksheet('動画一覧')
+                #print(worksheet.acell("A2").value)
+                last_row =len(ws.col_values(1))
+                next_row = last_row + 1
+#                url = "https://www.youtube.com/watch?v=AZOr7GuxLPQ"
+                url = request.POST['Website']
+                videoInfo = Video.getInfo(url)
+
+                items = [videoInfo["channel"]["name"],videoInfo["title"],url,"",videoInfo["id"]]
+                ws.append_row(items , table_range='A'+str(next_row))
+
+                ws = gs.open_by_key(SPREADSHEET_KEY).worksheet('リクエスト一覧')
+                #print(worksheet.acell("A2").value)
+                last_row =len(ws.col_values(1))
+                next_row = last_row + 1
+#                url = "https://www.youtube.com/watch?v=AZOr7GuxLPQ"
+                url = request.POST['Website']
+                videoInfo = Video.getInfo(url)
+
+                items = [videoInfo["channel"]["name"],videoInfo["title"],url,"",videoInfo["id"]]
+                ws.append_row(items , table_range='A'+str(next_row))
+
+
         return render(request, "hello/formpage.html",context=self.params)
 
 
