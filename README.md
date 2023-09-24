@@ -15,6 +15,7 @@
 ```
 pip install pytchat
 pip install Django
+pip install django-filter
 ```
 - databaseのsetup
 ```
