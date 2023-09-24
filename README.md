@@ -42,3 +42,4 @@ python manage.py runserver
 - https://docs.google.com/spreadsheets/d/1QJzxviVL3Hln1yvIpjm0bRsmAU4O-GitAjOd9DZtGQM/edit#gid=0
   - このスプレッドシートに動画の情報が保存されている。
   - 動画追加のリクエストをフロントエンドから送ると、リクエスト一覧に、自動で書き込まれる。
+- 動画を追加したい場合、リクエスト一覧のスプレッドシートから、urlを取得し、RequestProcessor/main.pyのに貼り付け、実行する。ターミナルに、盛り上がったタイミングがみれるurlが生成されるので、それをスプレッドシートに書き込み、csv形式でダウンロートする。これをdata.csvとする。yt_highlight_finder直下にdata.csvを配置する。ここで、yt_highlight_finder/master.pyを実行すると、動画が追加される。
