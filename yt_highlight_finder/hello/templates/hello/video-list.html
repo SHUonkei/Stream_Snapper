@@ -6,10 +6,10 @@
 <div>
     <ul>
       {% for obj in object_list %}
-      {{ obj.title }}
-
+      
+      <a href="{{ obj.url }}" target="_blank">{{ obj.title }}</a>
         <li>
-            <a href="https://www.youtube.com/watch?v={{ obj.url }}" target="_blank">
+            <a href="{{ obj.url }}" target="_blank">
                 <!-- サムネイルを表示 -->
             <img src="https://img.youtube.com/vi/{{ obj.video }}/0.jpg" alt="{{ obj.title }}">
           </a>
