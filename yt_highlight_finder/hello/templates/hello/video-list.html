@@ -1,20 +1,31 @@
-{% comment %} {% extends "base.html" %} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/hello/video-list.css">
+    
+</head>
+<body>
+    <h1 class="page-title">{% block title %}動画一覧{% endblock %}</h1>
 
-{% block title %}動画一覧{% endblock %}
-
-{% block content %}
-<div>
-    <ul>
-      {% for obj in object_list %}
-      {{ obj.title }}
-
+    <ul class="video-list">
+        {% for obj in object_list %}
         <li>
             <a href="https://www.youtube.com/watch?v={{ obj.url }}" target="_blank">
-                <!-- サムネイルを表示 -->
-            <img src="https://img.youtube.com/vi/{{ obj.video }}/0.jpg" alt="{{ obj.title }}">
-          </a>
+              <div class="thumbnail">
+                  <img src="https://img.youtube.com/vi/{{ obj.video }}/0.jpg" alt="{{ obj.title }}">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                      <p class="video-title">{{ obj.title }}</p>
+                      <a class="button primary-color" href="https://www.youtube.com/watch?v={{ obj.url }}" target="_blank">Watch Now</a>
+                    </div>
+                  </div>
+              </div>
+            </a>
         </li>
-      {% endfor %}
+        {% endfor %}
     </ul>
-</div>
-{% endblock %}
+</body>
+</html>
+
