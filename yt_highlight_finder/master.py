@@ -19,6 +19,7 @@ with open('./data.csv',encoding='utf-8') as f:
         new_hello.title = row[1]
         new_hello.author = row[0]
         new_hello.url = row[3]
+        print(row[3])
         new_hello.video = row[4]        
         new_hello.tag = row[-1]
         print(row)
