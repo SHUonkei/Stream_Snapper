@@ -10,8 +10,10 @@
     <h1 class="page-title">{% block title %}動画一覧{% endblock %}</h1>
       
     <form method="get" action="./video-list">
-          <input type="text" name="q" placeholder="Search...">
-          <input type="submit" value="Search">
+      <div class="search-container">
+          <input type="text" name="q" placeholder="キーワードを入力">
+          <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
     </form>
     
     <ul class="video-list">
@@ -35,6 +37,7 @@
         </li>
         {% endfor %}
     </ul>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </body>
 </html>
 
