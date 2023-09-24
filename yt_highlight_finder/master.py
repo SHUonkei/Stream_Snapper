@@ -20,7 +20,7 @@ with open('./data.csv',encoding='utf-8') as f:
         new_hello.author = row[0]
         new_hello.url = row[3]
         new_hello.video = row[4]        
-        new_hello.tag = "test"
+        new_hello.tag = row[5].split("/")[0]
         print(row)
         hello_list.append(new_hello)
 

@@ -7,5 +7,6 @@ class Hello(models.Model):
     url = models.CharField(max_length=100)
     video = models.CharField(max_length=100)
     tag = models.CharField(max_length=100)
+    
     def __str__(self):
         return self.title
