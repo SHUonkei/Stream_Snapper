@@ -1,7 +1,15 @@
 # YT_Highlight_Finder
+## 説明
+youtubeライブで盛り上がったシーンを自動抽出するアプリ. また, それらを共有するプラットフォームの開発も行った. 
+
+※開発途中
+## 紹介スライド
+https://docs.google.com/presentation/d/1UKvAcaFx5FwfXBs462EB_cARdvLDly-jhSn5VGJOP8s
+
+
 ## file説明
 - RequestProcessor/get_funnytime.py
-    - 草、wといった盛り上がりのタイミングで現れる文字列を含むコメントのみを抽出
+    - 笑、wといった盛り上がりのタイミングで現れる文字列を含むコメントのみを抽出
 - RequestProcessor/plot_chatdata.py
     - get_funnttime.pyで取得したデータから、最も瞬間該当コメント数が多かったタイミングの一分前から再生が開始される動画URLを生成する
 - yt_highlight_finder/master.py
@@ -49,8 +57,3 @@ python manage.py migrate
 python master.py
 ```
 
-## 動画説明
-https://drive.google.com/file/d/1q5v_bmUgoT2uz1lwv5vr3bnKlhJ560Qx/view?usp=drive_link
-
-## 動画スライド
-https://docs.google.com/presentation/d/1UKvAcaFx5FwfXBs462EB_cARdvLDly-jhSn5VGJOP8s
