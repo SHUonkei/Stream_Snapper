@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.header {
+    background-color: #1F1B24;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+
+.header-logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.header-list ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.header-list ul li {
+    margin-right: 20px;
+}
+
+.Form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #292429;
+    border-radius: 8px;
+}
+
+.Form-Item {
+    margin-bottom: 20px;
+}
+
+.Form-Item-Label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.Form-Item-Input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #333;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0A84FF;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #005ecb;
+}
+
+.response {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #424242;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #0A84FF;
+}
+
+.header{
+    height:82px;
+    background-color: green;
+}
+
+.header-logo{
+background-color: rgb(245, 245, 53);
+font-size:36px;
+float:left;
+padding:20px
+
+}
+
+li{
+list-style: none;
+float: left;
+padding:20px;
+font-size: 15px;
+}
+
+.Form-Item {
+margin-top: 20px;
+margin-left: 20px;
+background: -webkit-linear-gradient(to right, rgb(255, 124, 111), #ffc994);
+background: linear-gradient(to right, rgb(255, 124, 111), #ffc994);
+color: white;
+font-weight: bold;
+font-size: 20px;
+text-align: center;
+padding: 20px; 
+clear: both; 
+}
+
+.Form-Item-Input {
+height: 40px;
+width: 100%; 
+}
+
+.Form-Item-label{
+text-align: center;
+}
+form {
+text-align: right;
+}
+

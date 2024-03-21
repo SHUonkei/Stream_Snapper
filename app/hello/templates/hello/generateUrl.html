@@ -1,0 +1,38 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+    <link rel="stylesheet" href="{% static 'hello/style.css' %}">
+    <meta charset="utf-8">
+    <title>Exciting scene</title>
+</head>
+<body>
+<div class="header">
+    <div class="header-logo">lemon</div>
+    <div class="header-list">
+        <ul>
+            <li>lemonとは</li>
+            <li>お問い合わせ</li>
+        </ul>
+    </div>
+</div>
+<div class="Form">
+    <form action="{% url 'GenerateUrl' %}" method="POST">
+        {% csrf_token %}
+        <div class="Form-Item">
+            <p class="Form-Item-Label"> 
+                <span class="Form-Item-Label-Required">URLを</span>送信
+            </p>
+            <input type="text" name="Website" class="Form-Item-Input" placeholder="URLを入力">
+            {{ form.as_p }}
+            <input type="submit" value="送信">
+        </div>
+        {% if response %}
+            <div class="response">
+                <p>面白いシーンのURL: {{ response }}</p>
+            </div>
+        {% endif %}
+    </form> 
+</div>
+</body>
+</html>

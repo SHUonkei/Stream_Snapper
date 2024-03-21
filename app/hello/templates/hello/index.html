@@ -1,0 +1,47 @@
+{% load static %} 
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>hello</title>
+</head>
+<head>
+    <link rel="stylesheet" href="../../static/hello/index.css" >
+    <meta charset="utf-8">
+    <title>Exciting scene</title>
+    </head>
+<body>
+    <div class="header">
+        <ul>
+            <ul>
+                <li><a href="https://lemon-tech.jp/">lemonとは</a></li>
+                <li><a href="{% url goToGenerateUrl %}">その場で動画盛り上がり検出！</a></li>
+                <li><a href="http://127.0.0.1:8000/hello/formpage">動画リクエスト</a></li>
+                <li><a href="http://127.0.0.1:8000/hello/video-list">動画検索</a></li>
+                <li><a href="https://lemon-tech.jp/contact/">お問い合わせ</a></li>
+            </ul>
+        </ul>
+        <img src="../../static/hello/pages/lemon.jpg" style="width: 250px"/>
+
+    </div>
+
+    <div class="title-sub">
+    <h1 align="center" >welcome to Stream Snapper</h1>
+    <p align="center">このサイトではYoutubeのライブ動画で一番盛り上がったシーンに飛ぶことができます.</p>
+
+</div>
+
+    </div>
+    <body>
+        <div class="container">
+            <div class="rectangle">
+                <div class="text">私たちはもう面白いところだけ見られれば良い</div>
+    </div>
+    </body>
+    <h1></h1>
+    <p></p>
+    <a href="{% url goto %}" class="button">動画一覧を見る</a>
+    <a href="{% url goToGenerateUrl %}" class="button">盛り上がりを検出する</a>
+
+    </html>
+</body>

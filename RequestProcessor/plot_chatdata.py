@@ -1,36 +1,39 @@
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from collections import defaultdict
+import numpy as np
+from PIL import Image
+import tqdm
+
+
 
 def most_funnest_time(video_id):
     #URLの末尾
-#    video_id="IW2t52ps27s"
     textname=video_id+'.txt'
     #data
     with open(textname, 'r', encoding='utf-16') as file:
         data = file.read()
     timestamps = []
-    for line in data.strip().split("\n"):
+    for line in tqdm(data.strip().split("\n")):
         #Parse
         date_str = line.split()[0]  # "2023-09-09"
         time_str = line.split()[1]  # "10:30:25"
 
-        # 日付と時間の文字列を結合します
+        # 日付と時間の文字列を結合
         datetime_str = date_str + " " + time_str  # "2023-09-09 10:30:25"
 
-        # datetimeオブジェクトに変換します
+        # datetimeオブジェクトに変換
         dt = datetime.strptime(datetime_str, "%Y-%m-%d %H:%M:%S")
         timestamps.append(dt)
     
-    print(timestamps)
     #time -> msg 
     msg_counts = defaultdict(int)
-    for timestamp in timestamps:
+    
+    for timestamp in tqdm(timestamps):
         # Round down to the nearest minute
         rounded_time = timestamp.replace(second=0)
         msg_counts[rounded_time] += 1
-
-
+        
     times_sorted = sorted(msg_counts.keys())
     counts_sorted = [msg_counts[time] for time in times_sorted]
     start = times_sorted[0]
@@ -50,19 +53,26 @@ def most_funnest_time(video_id):
 
     #最も盛り上がったタイミング-1分からスタート
     # #t=◯m◯s
-#    print("https://www.youtube.com/watch?v="+video_id+"#t="+str(int(minutes_since_start[max_commet_index])-1)+"m00s")
-    
-    # plt.figure(figsize=(10, 6))
-    # plt.plot(minutes_since_start, counts_sorted, marker='o', linestyle='-')
-    # plt.title("Number of Messages per Minute")
-    # plt.xlabel("Minutes since start")
-    # plt.ylabel("Message Count")
-    # plt.grid(True)
 
-    # plt.tight_layout()
-    # plt.show()
-
-    return "https://www.youtube.com/watch?v="+video_id+"#t="+str(int(minutes_since_start[max_commet_index])-1)+"m00s"
+    return "https://www.youtube.com/watch?v="+video_id+"#t="+str(int(minutes_since_start[max_commet_index])-1)+"m00s",minutes_since_start,counts_sorted
     
-#    Plot the results with adjusted x-axis
+def get_graph_data(minutes_since_start, counts_sorted):
+    
+    fig, ax = plt.subplots()
+    ax.figure(figsize=(10, 6))
+    ax.plot(minutes_since_start, counts_sorted, marker='o', linestyle='-')
+    ax.title("Number of Messages/min")
+    ax.xlabel("Min")
+    ax.ylabel("Message Count")
+    ax.grid(True)
+
+    ax.tight_layout()
+    
+    fig.canvas.draw()
+    im = np.array(fig.canvas.renderer.buffer_rgba())
+    # im = np.array(fig.canvas.renderer._renderer) # matplotlibが3.1より前の場合
+
+    img = Image.fromarray(im)
+    img.save("./image.jpg")
+
 
