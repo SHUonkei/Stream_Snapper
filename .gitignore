@@ -3,3 +3,6 @@
 *.log
 *.pyc
 __pycache__/
+
+# .envファイルをgitの管理対象から外す
+.env

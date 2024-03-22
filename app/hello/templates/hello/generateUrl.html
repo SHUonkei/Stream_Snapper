@@ -23,16 +23,15 @@
             <p class="Form-Item-Label"> 
                 <span class="Form-Item-Label-Required">URLを</span>送信
             </p>
-            <input type="text" name="Website" class="Form-Item-Input" placeholder="URLを入力">
             {{ form.as_p }}
             <input type="submit" value="送信">
-        </div>
         {% if response %}
             <div class="response">
                 <p>面白いシーンのURL: {{ response }}</p>
             </div>
         {% endif %}
-    </form> 
+      </div>
+      </form> 
 </div>
 </body>
 </html>

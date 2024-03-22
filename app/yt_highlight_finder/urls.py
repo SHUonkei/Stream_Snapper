@@ -24,7 +24,6 @@ from django.contrib import admin
 from django.urls import path,include
 #hello フォルダのviews.pyをhelloというなまえでimport
 import hello.views as hello
-import highlight.views as highlight
 from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
@@ -34,7 +33,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', include('hello.urls')),
-    path('highlight/', include('highlight.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

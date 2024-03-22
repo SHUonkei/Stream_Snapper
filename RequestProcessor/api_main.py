@@ -9,13 +9,16 @@ app = Flask(__name__)
 
 @app.route('/process_video', methods=['POST'])
 def process_video():
+    print("POST REQUEST:", request.json)
+    print("now processing...")
+
     content = request.json
     url = content['url']
     video_id = url.split("=")[-1]
     # Process chat data
 
     get_funnytime.get_chatdata(video_id)
-
+    
     # Generate url
     funny_time_url,minutes_since_start, counts_sorted = plot_chatdata.most_funnest_time(video_id)
     

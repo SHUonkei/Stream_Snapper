@@ -13,15 +13,13 @@ from oauth2client.service_account import ServiceAccountCredentials
 #api用
 import requests
 
-def urlGetRequest(data):
-    #環境変数に変える
-    url = "http://127.0.0.1:5000/process_video"
-    response = requests.post(url, json=data)
-    print("statuscode: ",response.status_code)
-    
-    return response.json()
+#env
+import os
+from dotenv import load_dotenv
 
-
+# .envファイルの内容を読み込見込む
+load_dotenv('../../.env')
+import utils
 def index(request):
     
     #変数とかなんか使う場合はここで置き換えて表示させる
@@ -65,7 +63,7 @@ class generateUrlView(TemplateView):
             self.params["Message"] = "リクエストを受け付けました！ありがとうございます！"
             url = request.POST['Website']
             data = {'url': url}
-            responsejson = urlGetRequest(data) 
+            responsejson = utils.urlGetRequest(data) 
             self.params["response"] = responsejson.get('funny_time_url', 'URLの取得に失敗しました')
         # エラーの場合でも同じテンプレートを使用
         return render(request, "hello/generateUrl.html", context=self.params)
@@ -97,21 +95,10 @@ class FormView(TemplateView):
                 #認証情報を使ってスプレッドシートの操作権を取得
                 gs = gspread.authorize(cretentials)
 
-                #共有したスプレッドシートのキー（後述）を使ってシートの情報を取得
+                #スプレッドシートのキーを使ってシートの情報を取得
                 SPREADSHEET_KEY = '1QJzxviVL3Hln1yvIpjm0bRsmAU4O-GitAjOd9DZtGQM'
-                ws = gs.open_by_key(SPREADSHEET_KEY).worksheet('動画一覧')
-                last_row =len(ws.col_values(1))
-                next_row = last_row + 1
 
-#               url:"https://www.youtube.com/watch?v=AZOr7GuxLPQ"
-
-                url = request.POST['Website']
-                videoInfo = Video.getInfo(url)
-
-                items = [videoInfo["channel"]["name"],videoInfo["title"],url,"",videoInfo["id"]]
-                ws.append_row(items , table_range='A'+str(next_row))
-
-                ws = gs.open_by_key(SPREADSHEET_KEY).worksheet('リクエスト一覧')
+                ws = gs.open_by_key(SPREADSHEET_KEY).worksheet('request')
                 last_row =len(ws.col_values(1))
                 next_row = last_row + 1
 

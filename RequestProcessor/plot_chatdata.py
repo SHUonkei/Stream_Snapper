@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 import numpy as np
 from PIL import Image
-import tqdm
 
 
 
@@ -14,7 +13,9 @@ def most_funnest_time(video_id):
     with open(textname, 'r', encoding='utf-16') as file:
         data = file.read()
     timestamps = []
-    for line in tqdm(data.strip().split("\n")):
+    
+    
+    for line in data.strip().split("\n"):
         #Parse
         date_str = line.split()[0]  # "2023-09-09"
         time_str = line.split()[1]  # "10:30:25"
@@ -29,7 +30,7 @@ def most_funnest_time(video_id):
     #time -> msg 
     msg_counts = defaultdict(int)
     
-    for timestamp in tqdm(timestamps):
+    for timestamp in timestamps:
         # Round down to the nearest minute
         rounded_time = timestamp.replace(second=0)
         msg_counts[rounded_time] += 1
