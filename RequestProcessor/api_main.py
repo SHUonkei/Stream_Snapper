@@ -4,12 +4,14 @@ import plot_chatdata
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 from PIL import Image
-import cv2
 import numpy as np
 import base64
 from io import BytesIO
+import re
 
 app = Flask(__name__)
+
+
 
 @app.route('/process_video', methods=['POST'])
 def process_video():
@@ -18,6 +20,11 @@ def process_video():
 
     content = request.json
     url = content['url']
+    # YouTubeのビデオURLのパターン
+    pattern = r'https?://www\.youtube\.com/watch\?v=[\w-]+'
+    
+    if not re.match(pattern, url):
+        return jsonify({'funny_time_url': "Invalid URL"})
     video_id = url.split("=")[-1]
     # Process chat data
     get_funnytime.get_chatdata(video_id)
@@ -32,6 +39,11 @@ def analyze_video():
     print("POST REQUEST:", request.json)
     print("accepted analyze_video request")
     print("now processing...")
+    # YouTubeのビデオURLのパターン
+    pattern = r'https?://www\.youtube\.com/watch\?v=[\w-]+'
+    
+    if not re.match(pattern, url):
+        return jsonify({'funny_time_url': "Invalid URL"})
     content = request.json
     url = content['url']
     video_id = url.split("=")[-1]

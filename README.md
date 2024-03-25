@@ -14,6 +14,17 @@ init_db.csv
 pip install -r requirements.txt
 ```
 
+init db
+
+```
+python app/manage.py migrate
+```
+
+初期データ
+```
+python app/init_db.py
+```
+
 ## 起動
 
 api
@@ -25,6 +36,5 @@ python RequestProcessor/api_main.py
 django app
 
 ```
-cd app
-python manage.py runserver
+python app/manage.py runserver
 ```
