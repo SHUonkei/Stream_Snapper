@@ -16,3 +16,10 @@ pip install gspread
 pip install youtube-search-python
 pip install python-dotenv
 ```
+
+## 起動
+```
+cd app
+python manage.py runserver
+
+```

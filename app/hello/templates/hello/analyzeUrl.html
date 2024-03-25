@@ -20,19 +20,26 @@
         <img src="../../static/hello/pages/logo.png" style="width: 80px; border-radius: 10px;"/>
 
     </div>
-
+<div class="form-container">
     <div class="Form">
-        <form action="{% url 'formpage' %}" method="POST">
-            {% csrf_token %}
-            <div class="Form-Item">
-                <p class="Form-Item-Label"> 
-                    <span class="Form-Item-Label-Required">URLを</span>送信
-                </p>
-                {{ form.as_p }}
-                <input type="submit" value="送信">
-            </div>
-        </form> 
+    <div class="description">
+        動画のURLを入力すると盛り上がったシーンをグラフ化して分析することができます.
+        ※レスポンスが返ってくるまでに時間がかかる場合があります.
     </div>
-
+    <form action="{% url 'analyzeUrl' %}" method="POST">
+        {% csrf_token %}
+        <div class="Form-Item">
+            {{ form.as_p }}
+            <input type="submit" value="送信">
+        {% if image_base64 %}
+            <div class="response">
+                <!-- Base64でエンコードされた画像を表示 -->
+                <img src="data:image/jpeg;base64,{{ image_base64 }}" alt="Processed Image"/>
+            </div>
+        {% endif %}
+      </div>
+      </form> 
+</div>
+</div>
 </body>
 </html>

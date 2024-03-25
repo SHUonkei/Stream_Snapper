@@ -11,7 +11,9 @@ def get_chatdata(get_video_id):
     print(livechat.is_alive)
     
     if os.path.isfile(get_video_id+'.txt'):
+        print("File already exists")
         return
+    
     f = open(get_video_id+'.txt', 'x', encoding='utf-16')
     while livechat.is_alive():
 

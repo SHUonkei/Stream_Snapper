@@ -7,22 +7,28 @@
     <title>Exciting scene</title>
 </head>
 <body>
-<div class="header">
-    <div class="header-logo">lemon</div>
-    <div class="header-list">
+    <div class="header">
         <ul>
-            <li>lemonとは</li>
-            <li>お問い合わせ</li>
+            <ul>
+                <li><a href="https://lemon-tech.jp/">lemonとは</a></li>
+                <li><a href="{% url goToGenerateUrl %}">その場で動画盛り上がり検出！</a></li>
+                <li><a href="{% url gotoform %}">動画リクエスト</a></li>
+                <li><a href="{% url goto %}">動画検索</a></li>
+                <li><a href="https://lemon-tech.jp/contact/">お問い合わせ</a></li>            
+            </ul>
         </ul>
+        <img src="../../static/hello/pages/logo.png" style="width: 80px; border-radius: 10px;"/>
+
     </div>
-</div>
-<div class="Form">
+<div class="form-container">
+    <div class="Form">
+    <div class="description">
+        動画のURLを入力すると最も盛り上がったシーンを自動検出して, 対象箇所からスタートするURLを生成します.
+        ※レスポンスが返ってくるまでに時間がかかる場合があります.
+    </div>
     <form action="{% url 'GenerateUrl' %}" method="POST">
         {% csrf_token %}
         <div class="Form-Item">
-            <p class="Form-Item-Label"> 
-                <span class="Form-Item-Label-Required">URLを</span>送信
-            </p>
             {{ form.as_p }}
             <input type="submit" value="送信">
         {% if response %}
@@ -32,6 +38,7 @@
         {% endif %}
       </div>
       </form> 
+</div>
 </div>
 </body>
 </html>

@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from .models import Hello
 from youtubesearchpython import *
 
+
 #スプシ周り
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -30,14 +31,22 @@ def index(request):
         'msg':"this is a page for testing",
         'goto':'videoListView',
         'goToGenerateUrl':'GenerateUrl',
-        'gotoform':'formpage'
+        'gotoform':'formpage',
+        'analyzeUrl':'analyzeUrl',
     }
     
     return render(request, 'hello/index.html',params)
 
 def videoListView(request):
+    ctx = {
+        'title':"this is title parameter",
+        'msg':"this is a page for testing",
+        'goto':'videoListView',
+        'goToGenerateUrl':'GenerateUrl',
+        'gotoform':'formpage',
+        'analyzeUrl':'analyzeUrl',
+    }
     template_name = "hello/video-list.html"
-    ctx = {}
     
     query = request.GET.get('q', '')  # 'q' は検索ボックスの名前
     if query:
@@ -52,6 +61,10 @@ class generateUrlView(TemplateView):
         self.params = {
             "Message":"情報を入力してください。",
             "form": forms.Contact_Form(),  # 'forms' ファイルからインスタンスを取得
+            'goto':'videoListView',
+            'goToGenerateUrl':'GenerateUrl',
+            'gotoform':'formpage',
+            'analyzeUrl':'analyzeUrl',
         }
 
     def get(self, request):
@@ -68,11 +81,40 @@ class generateUrlView(TemplateView):
         # エラーの場合でも同じテンプレートを使用
         return render(request, "hello/generateUrl.html", context=self.params)
 
+class analyzeUrlView(TemplateView):
+    def __init__(self):
+        self.params = {
+            "Message":"情報を入力してください。",
+            "form": forms.Contact_Form(),  # 'forms' ファイルからインスタンスを取得
+            'goto':'videoListView',
+            'goToGenerateUrl':'GenerateUrl',
+            'gotoform':'formpage',
+            'analyzeUrl':'analyzeUrl',
+        }
+
+    def get(self, request):
+        return render(request, "hello/analyzeUrl.html", context=self.params)
+
+    def post(self, request):
+        self.params["form"] = forms.Contact_Form(request.POST)
+        if self.params["form"].is_valid():
+            self.params["Message"] = "リクエストを受け付けました！ありがとうございます！"
+            url = request.POST['Website']
+            data = {'url': url}
+            responsejson = utils.analyzeRequest(data) 
+            self.params['image_base64'] = responsejson.get('image', 'URLの取得に失敗しました')
+        # エラーの場合でも同じテンプレートを使用
+        return render(request, "hello/analyzeUrl.html", context=self.params)
+
 class FormView(TemplateView):
     # 初期変数定義
     def __init__(self):
         self.params = {"Message":"情報を入力してください。",
                        "form":forms.Contact_Form(),#forms ファイルから 'form'という値にインスタンスが設定される
+                       'goto':'videoListView',
+                       'goToGenerateUrl':'GenerateUrl',
+                       'gotoform':'formpage',
+                       'analyzeUrl':'analyzeUrl',
                        }
 
     # GET時の処理を記載

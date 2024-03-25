@@ -3,7 +3,11 @@ import get_funnytime
 import plot_chatdata
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
-import tqdm
+from PIL import Image
+import cv2
+import numpy as np
+import base64
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -16,17 +20,35 @@ def process_video():
     url = content['url']
     video_id = url.split("=")[-1]
     # Process chat data
-
     get_funnytime.get_chatdata(video_id)
-    
     # Generate url
-    funny_time_url,minutes_since_start, counts_sorted = plot_chatdata.most_funnest_time(video_id)
+    funny_time_url, minutes_since_start, counts_sorted = plot_chatdata.most_funnest_time(video_id)
     
-    #後々グラフも表示したい
-    #graph_data = plot_chatdata.get_graph_data(minutes_since_start, counts_sorted)     
+    # Return the funny time URL
+    return jsonify({'funny_time_url': funny_time_url})
 
-    # Return the funny time URL and the placeholder for graph data
-    return jsonify({'funny_time_url': funny_time_url, 'graph_data': "placeholder_for_graph_data"})
+@app.route('/analyze_video', methods=['POST'])
+def analyze_video():
+    print("POST REQUEST:", request.json)
+    print("accepted analyze_video request")
+    print("now processing...")
+    content = request.json
+    url = content['url']
+    video_id = url.split("=")[-1]
+    # Process chat data
+    get_funnytime.get_chatdata(video_id)
+    # Generate url
+    funny_time_url, minutes_since_start, counts_sorted = plot_chatdata.most_funnest_time(video_id)
+    # Display graph in the future
+    plot_chatdata.get_graph_data(minutes_since_start, counts_sorted, video_id)     
+    response = {}
+    # Encode the saved file
+    with open("./image" + video_id + ".png", "rb") as f:
+        img_base64 = base64.b64encode(f.read()).decode('utf-8')
+    # Response
+    response['image'] = img_base64
+    
+    return jsonify(response)
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False, threaded=False)

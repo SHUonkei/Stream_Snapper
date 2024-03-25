@@ -1,20 +1,32 @@
+{% load static %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/hello/video-list.css">
-    
 </head>
+
 <body>
-    <h1 class="page-title">{% block title %}動画一覧{% endblock %}</h1>
-      
-    <form method="get" action="./video-list">
-      <div class="search-container">
-          <input type="text" name="q" placeholder="キーワードを入力">
-          <button type="submit"><i class="fas fa-search"></i></button>
-      </div>
-    </form>
+  <div class="header">
+    <ul>
+        <ul>
+            <li><a href="https://lemon-tech.jp/">lemonとは</a></li>
+            <li><a href="{% url goToGenerateUrl %}">その場で動画盛り上がり検出！</a></li>
+            <li><a href="{% url gotoform %}">動画リクエスト</a></li>
+            <li><a href="{% url goto %}">動画検索</a></li>
+            <li><a href="https://lemon-tech.jp/contact/">お問い合わせ</a></li>            
+        </ul>
+    </ul>
+    <img src="../../static/hello/pages/logo.png" style="width: 80px; border-radius: 10px;"/>
+  </div>
+    
+  <form method="get" action="./video-list">
+    <div class="search-container">
+        <input type="text" name="q" placeholder="キーワードを入力">
+        <button type="submit"><i class="fas fa-search"></i></button>
+    </div>
+  </form>
     
     <ul class="video-list">
         {% for obj in object_list %}

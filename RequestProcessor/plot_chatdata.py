@@ -57,23 +57,34 @@ def most_funnest_time(video_id):
 
     return "https://www.youtube.com/watch?v="+video_id+"#t="+str(int(minutes_since_start[max_commet_index])-1)+"m00s",minutes_since_start,counts_sorted
     
-def get_graph_data(minutes_since_start, counts_sorted):
+def get_graph_data(minutes_since_start, counts_sorted, video_id):
+    # seaborn-poster スタイルを適用
+    plt.style.use('seaborn-v0_8-dark')
+    # グラフのサイズと解像度を設定
+    fig, ax = plt.subplots(figsize=(10, 6), dpi=100)
     
-    fig, ax = plt.subplots()
-    ax.figure(figsize=(10, 6))
-    ax.plot(minutes_since_start, counts_sorted, marker='o', linestyle='-')
-    ax.title("Number of Messages/min")
-    ax.xlabel("Min")
-    ax.ylabel("Message Count")
-    ax.grid(True)
-
-    ax.tight_layout()
+    # プロットする際に線のスタイルと色を指定
+    ax.plot(minutes_since_start, counts_sorted, marker='o', linestyle='-', color='royalblue', markersize=5, linewidth=2)
     
+    # タイトルと軸ラベルの設定、フォントサイズの調整
+    ax.set_title("Number of Messages per Minute", fontsize=14, fontweight='bold')
+    ax.set_xlabel("Minutes Since Start", fontsize=12)
+    ax.set_ylabel("Message Count", fontsize=12)
+    
+    # 軸の目盛りのフォントサイズ
+    ax.tick_params(axis='both', which='major', labelsize=10)
+    
+    # グリッドを表示
+    ax.grid(True, which='both', linestyle='--', linewidth=0.5, color='gray')
+    
+    # グラフのレイアウトを整える
+    plt.tight_layout()
+    
+    # グラフを描画してNumPy配列に変換
     fig.canvas.draw()
     im = np.array(fig.canvas.renderer.buffer_rgba())
-    # im = np.array(fig.canvas.renderer._renderer) # matplotlibが3.1より前の場合
-
+    
+    # PIL.Imageオブジェクトに変換し、ファイルに保存
     img = Image.fromarray(im)
-    img.save("./image.jpg")
-
+    img.save("./image" + video_id + ".png")
 

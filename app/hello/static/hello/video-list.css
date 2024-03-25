@@ -1,4 +1,140 @@
 /* Container for the video list */
+
+body {
+    margin: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #080c0e;
+  }
+  
+  .main-sub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Make it full screen */
+    overflow: hidden;
+    background-color: #080c0e; /* Assuming a dark theme, but adjust as needed */
+  }
+  
+  .text {
+    font-size: 4rem;
+    color: #fff;
+    opacity: 0;
+    transform: translatey(20px);
+    animation: floatIn 2s forwards; /* Adjust timing as needed */
+    animation-delay: 1s; /* Starts the animation after a delay */
+  }
+  
+  @keyframes floatIn {
+    0% {
+      opacity: 0;
+      transform: translatey(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translatey(0);
+    }
+  }
+  
+  
+  .header {
+    display: flex;
+    border-radius: 10px;
+
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: rgba(49, 67, 75, 0.8); /* 半透明に設定 */
+    box-shadow: 0 2px 4px rgba(38, 39, 59, 0.454);
+  }
+  
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: #0D47A1;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .logo {
+    height: 82px; /* Adjust based on your logo's aspect ratio */
+  }
+  
+  .title-sub {
+    text-align: center;
+    font-size: 1rem;
+    background-color: #96dcfb;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 90%;
+  }
+  
+  .rectangle {
+    background-color: #96dcfb;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1000px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .button {
+    display: block;
+    width: 50%;
+    height: 50%;
+    padding: 15px 30px;
+    background-color: #186688;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 1rem;
+    transition: box-shadow 0.7s ease, transform 0.7s ease, opacity 0.7s ease; /* Updated for opacity */
+    opacity: 0.9; /* Set the opacity to 70% */
+  }
+  
+  .button:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: translateY(-5px); /* Move the button up slightly */
+    opacity: 1; /* Full opacity on hover */
+  }
+  
+  
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+  
+    nav ul li {
+      margin: 10px 0;
+    }
+  }
+  
 .video-list {
     display: flex;
     flex-wrap: wrap;
@@ -19,6 +155,8 @@
     overflow: hidden;
     width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 10px; /* 丸みをつける */
+
 }
 
 .thumbnail img {
@@ -28,7 +166,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover; /* Cover the padding area */
+    border-radius: 10px; /* 丸みをつける */
 }
+
 
 .overlay {
     position: absolute;
@@ -40,10 +180,15 @@
     width: 100%;
     height: 0;
     transition: .5s ease;
+    border-radius: 10px; /* 丸みをつける */
+
+    
 }
 
 .thumbnail:hover .overlay {
     height: 100%;
+    border-radius: 10px; /* 丸みをつける */
+
 }
 
 .overlay-content {
@@ -53,6 +198,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    border-radius: 10px; /* 丸みをつける */
+
 }
 
 /* Responsive adjustments */
@@ -71,7 +218,7 @@
 .search-container {
     display: flex;
     align-items: center;
-    width: 320px;
+    width: 50%;
     margin: 20px auto;
     background-color: #fff;
     border: 2px solid #007BFF;

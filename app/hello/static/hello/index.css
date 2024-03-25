@@ -1,17 +1,88 @@
+
 body {
-  margin: 0;
+  margin: 50px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #FFFDE7;
+  background-color: #080c0e;
+  /* background-image:url("./pages/logo_t.png"); */
 }
 
-.header {
+.main-sub {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Make it full screen */
+  overflow: hidden;
+  
+  animation: floatIn 2s forwards; /* Adjust timing as needed */
+  animation-delay: 1s; /* Starts the animation after a delay */
+  background-color: #080c0e; /* Assuming a dark theme, but adjust as needed */
+  background-image:url("./pages/logo_t.png");
+  background-repeat: no-repeat;
+  background-position:50% 10%;
+  background-size: 20%;
+  
+}
+
+.text {
+  font-size: 4rem;
+  color: #fff;
+  opacity: 0;
+  transform: translatey(20px);
+  animation: floatIn 2s forwards; /* Adjust timing as needed */
+  animation-delay: 1s; /* Starts the animation after a delay */
+    text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
+              -1px 1px 0 #FFF, 1px -1px 0 #FFF,
+              0px 1px 0 #FFF,  0-1px 0 #FFF,
+              -1px 0 0 #FFF, 1px 0 0 #FFF;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translatey(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+
+
+/* .header {
+  display: flex;
+  border-radius: 10px;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
-  background-color: #4e4d46;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: rgba(49, 67, 75, 0.8); 
+  box-shadow: 0 2px 4px rgba(38, 39, 59, 0.454);
+} */
+
+.header {
+  background-color: rgba(49, 67, 75, 0.8); /* 半透明に設定 */
+  box-shadow: 0 2px 4px rgba(38, 39, 59, 0.454);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
 }
+
+.header-logo {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.header-list ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.header-list ul li {
+  margin-right: 20px;
+}
+
 
 nav ul {
   display: flex;
@@ -35,16 +106,19 @@ nav ul li a {
 
 .title-sub {
   text-align: center;
-  background-color: #FFEB3B;
+  font-size: 1rem;
+  background-color: #96dcfb;
   padding: 20px;
   margin: 20px auto;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  max-width: 800px;
+  width: 95%;
+  transition: box-shadow 1s ease, transform 0.7s ease, opacity 0.7s ease; 
+
 }
 
 .rectangle {
-  background-color: #FFEB3B;
+  background-color: #96dcfb;
   color: #ffffff;
   padding: 20px;
   border-radius: 10px;
@@ -54,12 +128,19 @@ nav ul li a {
   max-width: 1000px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+.title-sub:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-10px);
+  opacity: 1; 
+}
 
-.button {
+
+/* .button {
   display: block;
-  width: auto;
+  width: 50%;
+  height: 50%;
   padding: 15px 30px;
-  background-color: #FFC107;
+  background-color: #186688;
   color: #ffffff;
   font-weight: bold;
   text-decoration: none;
@@ -68,8 +149,68 @@ nav ul li a {
   cursor: pointer;
   text-align: center;
   margin: 20px auto;
-  font-size: 18px;
+  font-size: 1rem;
+  transition: box-shadow 0.7s ease, transform 0.7s ease, opacity 0.7s ease; 
+  opacity: 0.9;
 }
+
+.button:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-5px);
+  opacity: 1; 
+} */
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.button {
+  display: inline-flex;
+  width: 50%;
+  margin: 50px;
+  margin-top: 10px;
+  flex-direction: column;
+  align-items: center;
+  background-color: #96dcfb;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 1s ease, transform 0.7s ease, opacity 0.7s ease; 
+
+}
+
+.button a {
+  display: block;
+  margin: 50px;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.description {
+  margin: 50px;
+  margin-top: 10px;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0.8;
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding does not affect overall width */
+  text-align: center;
+}
+
+.button:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-20px);
+  opacity: 1; 
+}
+
 
 @media (max-width: 768px) {
   .header {
