@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 
 # .envファイルの内容を読み込見込む
-load_dotenv('./.env')
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 def post_test(data):
     url = os.environ['API_URL']

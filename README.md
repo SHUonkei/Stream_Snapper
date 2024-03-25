@@ -6,20 +6,25 @@ youtubeライブで盛り上がったシーンを自動抽出するアプリ. �
 https://docs.google.com/presentation/d/1-x-z-yi8CvRIRrpr-fjHsA1q0IKzUEhoZpdMp1ldboE/edit#slide=id.g2c56f4f11e4_0_11
 
 ## 使い方
-rootディレクトリに.env fileを追加
+.env
+init_db.csv
+はサンプルを参照して作成してください.
 
 ```
-pip install pytchat
-pip install Django
-pip install django-filter
-pip install gspread
-pip install youtube-search-python
-pip install python-dotenv
+pip install -r requirements.txt
 ```
 
 ## 起動
+
+api
+
+```
+python RequestProcessor/api_main.py
+```
+
+django app
+
 ```
 cd app
 python manage.py runserver
-
 ```

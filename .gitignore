@@ -1,7 +1,9 @@
 .DS_Store
 *.txt
+!requirements.txt
 *.log
 *.pyc
 __pycache__/
 node_modules/
 .env
+init_db.csv

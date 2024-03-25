@@ -6,11 +6,11 @@ import os
 from dotenv import load_dotenv
 import numpy as np
 import base64
-import cv2
 from PIL import Image
 
 # .envファイルの内容を読み込見込む
-load_dotenv()
+#rootの.envファイルを読み込む
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 def urlGetRequest(data):
     #環境変数に変える

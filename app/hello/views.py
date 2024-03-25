@@ -18,8 +18,6 @@ import requests
 import os
 from dotenv import load_dotenv
 
-# .envファイルの内容を読み込見込む
-load_dotenv('../../.env')
 import utils
 def index(request):
     
