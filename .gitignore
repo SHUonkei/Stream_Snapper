@@ -1,6 +1,7 @@
 .DS_Store
 *.txt
 *.log
+*.pyc
+__pycache__/
+node_modules/
 
-# .envファイルをgitの管理対象から外す
-.env
