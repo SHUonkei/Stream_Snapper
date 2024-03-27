@@ -19,19 +19,27 @@ import requests
 import utils
 from youtubesearchpython import *
 
+from pathlib import Path
+
 def processRequests():
+    BASE_DIR = Path(__file__).resolve().parent
+    ENV_FILE = BASE_DIR / '.env'
+    APP_CONFIG_JSON = BASE_DIR / 'hello/config.json'
+
     # .envファイルの内容を読み込見込む
-    load_dotenv('./.env')
+    load_dotenv(ENV_FILE)
+    #load_dotenv('./.env')
 
     #スプシからリクエストを読み取り、apiをたたき、動画一覧に書き込む.
 
     scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('./app/hello/config.json', scope)
+    #credentials = ServiceAccountCredentials.from_json_keyfile_name('./app/hello/config.json', scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(APP_CONFIG_JSON, scope)
     gc = gspread.authorize(credentials)
 
     SPREAD_SHEET_KEY= os.environ['API_KEY']
-    CSV_FILENAME = "./request.csv"
+    #CSV_FILENAME = "./request.csv"
     SHEET_NAME='request'
     TARGET_SHEET_NAME='動画一覧'
     workbook = gc.open_by_key(SPREAD_SHEET_KEY)
@@ -62,7 +70,7 @@ def processRequests():
         items = [videoInfo["channel"]["name"],videoInfo["title"],Val,targetUrl,videoInfo["id"]]
         ws.append_row(items , table_range='A'+str(next_row))
         
-        #sqlight の　databaseに登録
+        # SQLite の database に登録
         new_record = Hello()
         total_records = Hello.objects.count()
         new_record.videoid = total_records
@@ -76,8 +84,3 @@ def processRequests():
     Hello.objects.bulk_create(data_list)
 
 processRequests()
-
-
-
-
-
