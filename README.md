@@ -12,8 +12,8 @@ youtubeライブで盛り上がったシーンを自動抽出するアプリ. �
 
 ### 準備
 
-最初に `.env`、`app/init_db.csv` を用意する必要があります。
-これらのサンプルは、`sample.env`、`app/sample.init_db.csv` にあるので、そちらを参照して作成してください.
+最初に `.env` を用意する必要があります。
+サンプルは、`sample.env` にあるので、そちらを参照して作成してください。
 
 それから、次の手順で環境を用意します。
 
@@ -36,7 +36,7 @@ pip install -r requirements.txt
 python app/manage.py migrate
 ```
 
-初期データの投入
+初期データの投入。DB 初期化にあたって自分で初期データを用意する場合は `app/init_db.csv` を作成します。サンプルが `app/sample.init_db.csv` にあるので、そちらを参照して作成してください。なお、`app/init_db.csv` がない場合は `app/sample.init_db.csv` が使われます。
 
 ```console
 python app/init_db.py
