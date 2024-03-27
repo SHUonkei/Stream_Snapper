@@ -75,8 +75,8 @@ def processRequests():
 
     Hello.objects.bulk_create(data_list)
 
-processRequests()
-
+#processRequests()
+print("master.py was executed.")
 
 
 
