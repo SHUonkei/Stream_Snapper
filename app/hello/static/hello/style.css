@@ -15,6 +15,20 @@ body {
     align-items: center;
   }
 
+  .header a:link {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .header a:visited {
+    color: #B6988A;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+  }
+
 .header-logo {
     font-weight: bold;
     font-size: 24px;
