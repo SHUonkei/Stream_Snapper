@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/hello/video-list.css">
+    <link rel="stylesheet" href="{% static 'hello/style.css' %}">
+    <link rel="stylesheet" href="{% static 'hello/video-list.css' %}">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
             <li><a href="https://lemon-tech.jp/contact/">お問い合わせ</a></li>            
         </ul>
     </ul>
-    <img src="../../static/hello/pages/logo.png" style="width: 80px; border-radius: 10px;"/>
+    <a href="/hello/"><img src="{% static 'hello/pages/logo.png' %}" style="width: 80px; border-radius: 10px;"/></a>
   </div>
     
   <form method="get" action="./video-list">

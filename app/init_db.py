@@ -20,10 +20,16 @@ import utils
 from youtubesearchpython import *
 from tqdm import tqdm
 
+from pathlib import Path
+
 def __init_db__():
     # 空のリストを作成
     hello_list = []
-    with open('./app/sample.init_db.csv',encoding='utf-8') as f:
+    INIT_DB_CSV_PATH = Path(__file__).resolve().parent / 'init_db.csv'
+    is_file = os.path.isfile(INIT_DB_CSV_PATH)
+    if not is_file:
+        INIT_DB_CSV_PATH = Path(__file__).resolve().parent / 'sample.init_db.csv'
+    with open(INIT_DB_CSV_PATH, encoding='utf-8') as f:
         reader = csv.reader(f)
         id_num = 1000
         for row in tqdm(reader):
