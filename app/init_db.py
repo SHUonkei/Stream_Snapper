@@ -2,7 +2,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "yt_highlight_finder.settings")  # プロジェクト名に応じて変更
 import django
 django.setup()
-from hello.models import Hello  # アプリ名に応じて変更
+from stream_snapper.models import StreamSnapper  # アプリ名に応じて変更
 import csv
 
 import gspread
@@ -24,7 +24,7 @@ from pathlib import Path
 
 def __init_db__():
     # 空のリストを作成
-    hello_list = []
+    stream_snapper_list = []
     INIT_DB_CSV_PATH = Path(__file__).resolve().parent / 'init_db.csv'
     is_file = os.path.isfile(INIT_DB_CSV_PATH)
     if not is_file:
@@ -33,19 +33,19 @@ def __init_db__():
         reader = csv.reader(f)
         id_num = 1000
         for row in tqdm(reader):
-            new_hello = Hello()
-            new_hello.videoid = id_num
+            new_stream_snapper = StreamSnapper()
+            new_stream_snapper.videoid = id_num
             id_num += 1
-            new_hello.title = row[1]
-            new_hello.author = row[0]
-            new_hello.url = row[3]
+            new_stream_snapper.title = row[1]
+            new_stream_snapper.author = row[0]
+            new_stream_snapper.url = row[3]
             print(row[3])
-            new_hello.video = row[4]        
-            new_hello.tag = row[-1]
+            new_stream_snapper.video = row[4]        
+            new_stream_snapper.tag = row[-1]
             print(row)
-            hello_list.append(new_hello)
+            stream_snapper_list.append(new_stream_snapper)
 
     # bulk_createを使用して一括保存
-    Hello.objects.bulk_create(hello_list)
+    StreamSnapper.objects.bulk_create(stream_snapper_list)
     
 __init_db__()

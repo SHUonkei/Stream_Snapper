@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from . import forms
 from django.views.generic import TemplateView
-from .models import Hello
+from .models import StreamSnapper
 from youtubesearchpython import *
 
 
@@ -33,7 +33,7 @@ def index(request):
         'analyzeUrl':'analyzeUrl',
     }
     
-    return render(request, 'hello/index.html',params)
+    return render(request, 'stream_snapper/index.html',params)
 
 def videoListView(request):
     ctx = {
@@ -44,13 +44,13 @@ def videoListView(request):
         'gotoform':'formpage',
         'analyzeUrl':'analyzeUrl',
     }
-    template_name = "hello/video-list.html"
+    template_name = "stream_snapper/video-list.html"
     
     query = request.GET.get('q', '')  # 'q' は検索ボックスの名前
     if query:
-        qs = Hello.objects.filter(title__icontains=query)
+        qs = StreamSnapper.objects.filter(title__icontains=query)
     else:
-        qs = Hello.objects.all()
+        qs = StreamSnapper.objects.all()
     ctx["object_list"] = qs
     return render(request, template_name, ctx)
 
@@ -66,7 +66,7 @@ class generateUrlView(TemplateView):
         }
 
     def get(self, request):
-        return render(request, "hello/generateUrl.html", context=self.params)
+        return render(request, "stream_snapper/generateUrl.html", context=self.params)
 
     def post(self, request):
         self.params["form"] = forms.Contact_Form(request.POST)
@@ -77,7 +77,7 @@ class generateUrlView(TemplateView):
             responsejson = utils.urlGetRequest(data) 
             self.params["response"] = responsejson.get('funny_time_url', 'URLの取得に失敗しました')
         # エラーの場合でも同じテンプレートを使用
-        return render(request, "hello/generateUrl.html", context=self.params)
+        return render(request, "stream_snapper/generateUrl.html", context=self.params)
 
 class analyzeUrlView(TemplateView):
     def __init__(self):
@@ -91,7 +91,7 @@ class analyzeUrlView(TemplateView):
         }
 
     def get(self, request):
-        return render(request, "hello/analyzeUrl.html", context=self.params)
+        return render(request, "stream_snapper/analyzeUrl.html", context=self.params)
 
     def post(self, request):
         self.params["form"] = forms.Contact_Form(request.POST)
@@ -102,7 +102,7 @@ class analyzeUrlView(TemplateView):
             responsejson = utils.analyzeRequest(data) 
             self.params['image_base64'] = responsejson.get('image', 'URLの取得に失敗しました')
         # エラーの場合でも同じテンプレートを使用
-        return render(request, "hello/analyzeUrl.html", context=self.params)
+        return render(request, "stream_snapper/analyzeUrl.html", context=self.params)
 
 class FormView(TemplateView):
     # 初期変数定義
@@ -117,7 +117,7 @@ class FormView(TemplateView):
 
     # GET時の処理を記載
     def get(self,request):
-        return render(request, "hello/formpage.html",context=self.params)
+        return render(request, "stream_snapper/formpage.html",context=self.params)
 
     # POST時の処理を記載
     def post(self,request):
@@ -127,7 +127,7 @@ class FormView(TemplateView):
             if self.params["form"].is_valid():
                 self.params["Message"] = "リクエストを受け付けました！ありがとうございます！"
                 #urlが無効なとき（youtubeとかじゃないときの例外処理必要
-                SERVICE_ACCOUNT_FILE = 'hello/config.json'
+                SERVICE_ACCOUNT_FILE = 'stream_snapper/config.json'
                 #jsonファイルを使って認証情報を取得
                 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
                 cretentials = ServiceAccountCredentials.from_json_keyfile_name(SERVICE_ACCOUNT_FILE, scope)
@@ -150,7 +150,7 @@ class FormView(TemplateView):
                 ws.append_row(items , table_range='A'+str(next_row))
 
 
-        return render(request, "hello/formpage.html",context=self.params)
+        return render(request, "stream_snapper/formpage.html",context=self.params)
 
 
 
@@ -166,7 +166,7 @@ def next(request):
         ,'msg':"this is next page"
         ,'goto':'index',
     }
-    return render(request, 'hello/index.html',params)
+    return render(request, 'stream_snapper/index.html',params)
 
 
 

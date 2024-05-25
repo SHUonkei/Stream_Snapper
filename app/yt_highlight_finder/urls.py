@@ -22,8 +22,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path,include
-#hello フォルダのviews.pyをhelloというなまえでimport
-import hello.views as hello
+#stream_snapper フォルダのviews.pyをstream_snapperというなまえでimport
+import stream_snapper.views as stream_snapper
 from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
@@ -32,7 +32,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', include('hello.urls')),
+    path('stream_snapper/', include('stream_snapper.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

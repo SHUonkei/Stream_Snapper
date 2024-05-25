@@ -2,7 +2,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "yt_highlight_finder.settings")  # プロジェクト名に応じて変更
 import django
 django.setup()
-from hello.models import Hello  # アプリ名に応じて変更
+from stream_snapper.models import StreamSnapper  # アプリ名に応じて変更
 import csv
 
 import gspread
@@ -24,7 +24,7 @@ from pathlib import Path
 def processRequests():
     BASE_DIR = Path(__file__).resolve().parent
     ENV_FILE = BASE_DIR / '.env'
-    APP_CONFIG_JSON = BASE_DIR / 'hello/config.json'
+    APP_CONFIG_JSON = BASE_DIR / 'stream_snapper/config.json'
 
     # .envファイルの内容を読み込見込む
     load_dotenv(ENV_FILE)
@@ -34,7 +34,7 @@ def processRequests():
 
     scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
-    #credentials = ServiceAccountCredentials.from_json_keyfile_name('./app/hello/config.json', scope)
+    #credentials = ServiceAccountCredentials.from_json_keyfile_name('./app/stream_snapper/config.json', scope)
     credentials = ServiceAccountCredentials.from_json_keyfile_name(APP_CONFIG_JSON, scope)
     gc = gspread.authorize(credentials)
 
@@ -71,8 +71,8 @@ def processRequests():
         ws.append_row(items , table_range='A'+str(next_row))
         
         # SQLite の database に登録
-        new_record = Hello()
-        total_records = Hello.objects.count()
+        new_record = StreamSnapper()
+        total_records = StreamSnapper.objects.count()
         new_record.videoid = total_records
         new_record.title = videoInfo["title"]
         new_record.author = videoInfo["channel"]["name"]
@@ -81,6 +81,6 @@ def processRequests():
         new_record.tag = ""
         data_list.append(new_record)
 
-    Hello.objects.bulk_create(data_list)
+    StreamSnapper.objects.bulk_create(data_list)
 
 processRequests()

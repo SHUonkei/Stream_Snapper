@@ -1,6 +1,6 @@
 from django.db import models
 
-class Hello(models.Model):
+class StreamSnapper(models.Model):
     videoid = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
