@@ -10,4 +10,3 @@ node_modules/
 init_db.csv
 venv/
 
-config.json
