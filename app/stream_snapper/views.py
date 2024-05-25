@@ -21,7 +21,7 @@ from dotenv import load_dotenv
 import utils
 def index(request):
     
-    #変数とかなんか使う場合はここで置き換えて表示させる
+    #変数使う場合はここで置き換えて表示
     #render の返り値: TemplateResponseクラスのインスタンス
     
     params = {
@@ -167,29 +167,3 @@ def next(request):
         ,'goto':'index',
     }
     return render(request, 'stream_snapper/index.html',params)
-
-
-
-#ビュー関数
-#クライアントからのHTTPリクエストを受け取り、
-#それに対するHTTPレスポンスを返す役割
-#ここでのrequestは、クライアントからのリクエスト情報を保持するオブジェクト
-
-#リクエストが来たらする処理をかく
-#requestはHttpRequestクラスのインスタンス
-#クライアントからサーバーにアクセスする際の様々な情報をまとめて管理している
-#対になる概念がHttpResponse
-#もちろんクエリパラメータもその中に入っているので、dict形式で取得できる GETが辞書
-
-# def index(request,id,nickname):
-    #クエリパラメータをつかう　?id=1&name= みたいなところ 
-    # if 'msg' in request.GET:
-    #     msg = request.GET['msg']
-    #     result = HttpResponse('You Typed: "'+msg+'".')
-    # else:
-    #     result = "please send msg parameter!"
-    # return HttpResponse(result)
-    
-    # result = 'your id:' + str(id) + ', name: "' + nickname + '".'
-    # return HttpResponse(result)
-    
