@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 #アプリケーションの設定
 INSTALLED_APPS = [
-#    'hello.apps.HelloConfig',
+#    'stream_snapper.apps.StreamSnapperConfig',
     'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello',#pathみたいなもの　か？　
+    'stream_snapper',#pathみたいなもの　
 ]
 
 MIDDLEWARE = [

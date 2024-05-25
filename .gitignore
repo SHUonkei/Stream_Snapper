@@ -9,3 +9,4 @@ node_modules/
 .env
 init_db.csv
 venv/
+

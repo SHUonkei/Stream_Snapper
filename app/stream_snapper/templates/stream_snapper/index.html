@@ -3,11 +3,11 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>hello</title>
+    <title>stream_snapper</title>
 </head>
 <head>
-    <link rel="stylesheet" href="{% static 'hello/style.css' %}">
-    <link rel="stylesheet" href="{% static 'hello/index.css' %}">
+    <link rel="stylesheet" href="{% static 'stream_snapper/style.css' %}">
+    <link rel="stylesheet" href="{% static 'stream_snapper/index.css' %}">
     <meta charset="utf-8">
     <title>Exciting scene</title>
 </head>
@@ -23,7 +23,7 @@
                 <li><a href="https://lemon-tech.jp/contact/">お問い合わせ</a></li>            
             </ul>
         </ul>
-        <a href="/hello/"><img src="{% static 'hello/pages/logo.png' %}" style="width: 80px; border-radius: 10px;"/></a>
+        <a href="/stream_snapper/"><img src="{% static 'stream_snapper/pages/logo.png' %}" style="width: 80px; border-radius: 10px;"/></a>
     </div>
 
     <div class="main-sub">
@@ -31,7 +31,7 @@
     </div> 
 
     <div class="title-sub">
-        <img src="{% static 'hello/pages/logo.png' %}" style="width: 600px"/>
+        <img src="{% static 'stream_snapper/pages/logo.png' %}" style="width: 600px"/>
         <h1 align="center" >Stream Snapper</h1>
         <p align="center">このサイトではYoutubeのライブ動画で一番盛り上がったシーンに飛ぶことができます.</p>
     </div>
@@ -39,14 +39,14 @@
     </div>
     <div class="button-group">
         <span class="button">
-            <img src="{% static 'hello/pages/youtube.png' %}" alt="YouTube" style="width: 160px; border-radius: 10px;"/>
+            <img src="{% static 'stream_snapper/pages/youtube.png' %}" alt="YouTube" style="width: 160px; border-radius: 10px;"/>
             <a href="{% url goto %}">動画一覧を見る</a>
             <div class="description">
                 動画を再生すると最も盛り上がったシーンに飛びます.
             </div>
         </span>
         <span class="button">
-            <img src="{% static 'hello/pages/cut.png' %}" alt="Cut" style="width: 160px; border-radius: 10px;"/>
+            <img src="{% static 'stream_snapper/pages/cut.png' %}" alt="Cut" style="width: 160px; border-radius: 10px;"/>
             <a href="{% url goToGenerateUrl %}">盛り上がりを検出する</a>
             <div class="description">
                 動画のURLを入力すると最も盛り上がったシーンを自動検出して, 対象箇所からスタートするURLを生成します.
@@ -55,14 +55,14 @@
     </div>
     <div class="button-group">
         <span class="button">
-            <img src="{% static 'hello/pages/upload.png' %}" alt="upload" style="width: 160px; border-radius: 10px;"/>
+            <img src="{% static 'stream_snapper/pages/upload.png' %}" alt="upload" style="width: 160px; border-radius: 10px;"/>
             <a href="{% url gotoform %}">動画リクエストをする</a>
             <div class="description">
                 動画のURLを入力すると最も盛り上がったシーンを自動検出して,動画一覧に追加することできます.
             </div>
         </span>
         <span class="button">
-            <img src="{% static 'hello/pages/analyze.png' %}" alt="analyze" style="width: 160px; border-radius: 10px;"/>
+            <img src="{% static 'stream_snapper/pages/analyze.png' %}" alt="analyze" style="width: 160px; border-radius: 10px;"/>
             <a href="{% url analyzeUrl %}">動画を分析する</a>
             <div class="description">
                 動画のURLを入力すると盛り上がったシーンをグラフ化して分析することができます.
