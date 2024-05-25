@@ -24,6 +24,8 @@ python -m venv venv
 . venv/bin/activate
 ```
 
+google cloudのプロジェクトを作成してサービスアカウントを作成. 管理用スプシに対象アカウントを招待してください.また, sample.config.jsonを参照して, config.jsonを作成してください.
+
 必要なパッケージのインストール
 
 ```console
